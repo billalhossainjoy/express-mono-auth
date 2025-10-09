@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: ./server
+      target: production
+    ports:
+      - "3051:3000"
+    env_file:
+      - ./server/.env.production
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: "postgresql://root:password@postgres:5432/express"
+    depends_on:
+      - postgres
+    networks:
+      - express-auth
+    command: pnpm run start
+    # No volumes mounted, lightweight container
+
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: express
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - express-auth
+
+#  cloudflared:
+#    image: cloudflare/cloudflared
+#    command: tunnel --no-autoupdate run --token YOUR_TUNNEL_TOKEN
+#    restart: unless-stopped
+#    networks:
+#      - express-auth
+
+volumes:
+  pg_data:
+
+networks:
+  express-auth:

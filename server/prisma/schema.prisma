@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id         String  @id @default(uuid())
+  userId     String  @unique
+  email      String  @unique
+  phone      String
+  password   String
+  isVerified Boolean @default(false)
+
+  verifyToken  String?
+  verifyOtp    Int?
+  verifyExpiry DateTime?
+
+  forgottenToken  String?
+  forgottenOtp    Int?
+  forgottenExpiry DateTime?
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id   String @id @default(uuid())
+  name String
+  role Role   @default(USER)
+
+  avatar String?
+
+  address     String?
+  dateOfBirth DateTime?
+  language    String?
+
+  account Account?
+}
+
+
+model AggrementInfo {
+  id        String            @id @default(uuid())
+  type      AggrementInfoType
+  role      Role
+  title     String
+  content   String
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @default(now()) @updatedAt
+
+  @@unique([type, role])
+}
+
+
+enum AggrementInfoType {
+  PRIVACY_POLICY
+  TERMS_CONDITION
+  ABOUT_US
+}
+
+enum Role {
+  ADMIN
+  USER
+}

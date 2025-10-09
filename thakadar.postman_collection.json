@@ -1,0 +1,875 @@
+{
+	"info": {
+		"_postman_id": "7f6436b2-f61a-42d6-928a-578b4458849a",
+		"name": "thakadar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40980735",
+		"_collection_link": "https://sparktech-0933.postman.co/workspace/Sparktech-Workspace~dae05d43-4f51-4d90-87f1-5e2162599979/collection/40980735-7f6436b2-f61a-42d6-928a-578b4458849a?action=share&source=collection_link&creator=40980735"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Billal Hossain\",\n    \"email\": \"rider@gmail.com\",\n    \"password\": \"12345678\",\n    \"phone\": \"015165006539\",\n    \"role\": \"RIDER\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/signup",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"rider@gmail.com\",\n    \"password\": \"12345678\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify with otp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"otp\": 638411\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/verify-otp",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"verify-otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify with token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/auth/verify/ddf3bfbe0fd174c521e6a68127dc01d6eb14d152778f4cd77a0a5d0fa642b530",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"verify",
+								"ddf3bfbe0fd174c521e6a68127dc01d6eb14d152778f4cd77a0a5d0fa642b530"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgotten-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"billal@gmail.com\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/forgot-password",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgotten-password otp verify",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"billal@gmail.com\",\n    \"otp\": 148223\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/forgot-password/otp",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"forgot-password",
+								"otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset by otp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"otp\": 554855,\n    \"email\": \"billal@gmail.com\",\n    \"password\": \"147852369\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/reset-password",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset by token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"12345678\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/reset-password/09fe6241a390dae269b4b4d2027681cee1efb671a6f673b423b955d4c51d200a",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"reset-password",
+								"09fe6241a390dae269b4b4d2027681cee1efb671a6f673b423b955d4c51d200a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer token",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/auth/logout",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh-token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer token",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/auth/refresh-token",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "agreements",
+					"item": [
+						{
+							"name": "Privacy policy",
+							"item": [
+								{
+									"name": "get",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/aggrements/privacy&policy",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"aggrements",
+												"privacy&policy"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/aggrements/privacy&policy",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"aggrements",
+												"privacy&policy"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Terms & conditions",
+							"item": [
+								{
+									"name": "get",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/aggrements/terms&conditions",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"aggrements",
+												"terms&conditions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/aggrements/terms&conditions",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"aggrements",
+												"terms&conditions"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "About us",
+							"item": [
+								{
+									"name": "get",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/aggrements/about-us",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"aggrements",
+												"about-us"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/aggrements/about-us",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"aggrements",
+												"about-us"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "support",
+							"item": [
+								{
+									"name": "get",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/aggrements/support",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"aggrements",
+												"support"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseURL}}/aggrements/support",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"aggrements",
+												"support"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "get",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "type",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"PRIVACY_POLICY\" // PRIVACY_POLICY, TERMS_CONDITION, ABOUT_US\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/agreements",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"agreements"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "type",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"PRIVACY_POLICY\", // PRIVACY_POLICY, TERMS_CONDITION, ABOUT_US\n    \"title\": \"Privacy & policy\",\n    \"role\": \"USER\", // ADMIN | USER | RIDER\n    \"content\": \"lorem TERMS_CONDITION\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/agreements",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"agreements"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "type",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"PRIVACY_POLICY\", // PRIVACY_POLICY, TERMS_CONDITION, ABOUT_US\n    \"title\": \"Privacy & policy\",\n    \"role\": \"USER\", // ADMIN | USER | RIDER\n    \"content\": \"lorem TERMS_CONDITION f\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/agreements/f8f9f602-e4f3-4aa5-8bee-010ecc5aba68",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"agreements",
+										"f8f9f602-e4f3-4aa5-8bee-010ecc5aba68"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/profile",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "avatar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "postman-cloud:///1eff5cd1-92ff-4990-8f37-494eebdf4080"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/profile/avatar",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"profile",
+								"avatar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "udpate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Billal Hossain\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/profile",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload licence",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "license",
+									"type": "file",
+									"src": "/home/billal-hossain/Documents/license-demo.jpg"
+								},
+								{
+									"key": "side",
+									"value": "BACK",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/profile/upload-license",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"profile",
+								"upload-license"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldPassword\": \"123456789\",\n    \"newPassword\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/profile/change-password",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"profile",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "additional info",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"Mohammadpur, Dhaka 1230\",\n    \"type\": \"CAR\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/profile/additional-info",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"profile",
+								"additional-info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payment",
+			"item": [
+				{
+					"name": "create-session",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"billal@gmail.com\",\n    \"password\": \"12345678\"\n}\n"
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ride",
+			"item": [
+				{
+					"name": "search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pickup\": {\n        \"lat\": 23.778264,\n        \"lng\": 90.397519\n    },\n    \"destination\": {\n        \"lat\": 23.780219,\n        \"lng\": 90.416642\n    }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/ride/search?query=aqua tawer&lng=&lat=&radius=",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"ride",
+								"search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "aqua tawer",
+									"description": "search query "
+								},
+								{
+									"key": "lng",
+									"value": "",
+									"description": "user current location lng"
+								},
+								{
+									"key": "lat",
+									"value": "",
+									"description": "user current location lat"
+								},
+								{
+									"key": "radius",
+									"value": "",
+									"description": "radius in meter"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "polyline",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pickup\": {\n        \"lat\": 23.778264,\n        \"lng\": 90.397519\n    },\n    \"destination\": {\n        \"lat\": 23.780219,\n        \"lng\": 90.416642\n    }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/ride/search?query=aqua tawer&lng=&lat=&radius=",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"ride",
+								"search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "aqua tawer",
+									"description": "search query "
+								},
+								{
+									"key": "lng",
+									"value": "",
+									"description": "user current location lng"
+								},
+								{
+									"key": "lat",
+									"value": "",
+									"description": "user current location lat"
+								},
+								{
+									"key": "radius",
+									"value": "",
+									"description": "radius in meter"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://127.0.0.1:3000"
+		}
+	]
+}

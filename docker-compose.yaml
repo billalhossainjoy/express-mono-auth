@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: ./server
+      target: development
+    ports:
+      - "3001:3000"
+    env_file:
+      - ./server/.env.development
+    volumes:
+      - ./server:/usr/src/app       # Mount local files for hot reload
+      - /usr/src/app/node_modules
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: "postgresql://root:password@postgres:5432/express"
+      CHOKIDAR_USEPOLLING: "true"
+    depends_on:
+      - postgres
+    networks:
+      - express-auth
+    command: pnpm run dev
+
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    ports:
+      - "5431:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: express
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - express-auth
+
+volumes:
+  pg_data:
+
+networks:
+  express-auth:
