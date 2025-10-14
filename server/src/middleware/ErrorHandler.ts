@@ -4,6 +4,7 @@ import { NODE_ENV } from "../config/env/app.env";
 import { logger } from "../config/logger";
 import { ZodError } from "zod";
 import { ResponseApi } from "../lib/ResponseApi";
+import { Prisma } from "@prisma/client";
 
 export function DefaultErrorHandler(
   err: Error,
@@ -32,6 +33,12 @@ export function DefaultErrorHandler(
   if (err instanceof ZodError) {
     return ResponseApi(res, statusCode, "Validation Failed", {
       errors: err._zod,
+    });
+  }
+
+  if (err instanceof Prisma.PrismaClientKnownRequestError) {
+    return ResponseApi(res, statusCode, "Validation Failed", {
+      errors: err,
     });
   }
 

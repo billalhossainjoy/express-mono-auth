@@ -11,13 +11,7 @@ import { JWT } from "./jwt";
 import { generateOtp, generateToken } from "../../utlis/generate";
 
 export class AuthService {
-  static async signup({
-    name,
-    phone,
-    email,
-    password,
-    role,
-  }: SignupSchemaType) {
+  static async signup({ name, email, role, password }: SignupSchemaType) {
     const existingUser = await AccountService.findByEmail(email);
     if (existingUser) throw new HttpError(409, "Email already exists");
 
@@ -31,7 +25,6 @@ export class AuthService {
       data: {
         email,
         password: hashedPassword,
-        phone,
         verifyOtp,
         verifyToken,
         verifyExpiry,

@@ -23,6 +23,7 @@ class AuthRoute {
       .post(controller.resetPasswordByToken);
 
     this.router.route("/logout").get(Protected, controller.logout);
+    this.router.route("/session").get(Protected, controller.getSession);
   }
 }
 

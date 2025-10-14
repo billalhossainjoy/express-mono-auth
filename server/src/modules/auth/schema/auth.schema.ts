@@ -5,7 +5,6 @@ export const SignUpSchema = z.object({
   name: z.string(),
   email: z.string(),
   password: z.string(),
-  phone: z.string(),
   role: z.enum(Role).optional(),
 });
 

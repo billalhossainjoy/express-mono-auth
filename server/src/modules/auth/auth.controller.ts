@@ -121,4 +121,8 @@ export class AuthController {
     await AuthService.resetPasswordByToken(token, password);
     return ResponseApi(res, 200, "Password reset successfully");
   });
+
+  getSession = asyncHandler(async (req, res) => {
+    return ResponseApi(res, 200, "Session", req.user);
+  });
 }

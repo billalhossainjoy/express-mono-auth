@@ -1,10 +1,32 @@
 version: '3.8'
 
 services:
+  dashboard:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+      target: dev
+    command: npm run dev -- --host
+    restart: unless-stopped
+    env_file: "dashboard/.env.local.development"
+    volumes:
+      - ./dashboard:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "5173:5173"
+      - "5001:5001"
+    environment:
+      NODE_ENV: "development"
+    depends_on:
+      - server
+    networks:
+      - qemu
+
   server:
     build:
       context: ./server
       target: development
+    restart: unless-stopped
     ports:
       - "3001:3000"
     env_file:
@@ -14,12 +36,12 @@ services:
       - /usr/src/app/node_modules
     environment:
       NODE_ENV: development
-      DATABASE_URL: "postgresql://root:password@postgres:5432/express"
+      DATABASE_URL: "postgresql://root:password@postgres:5432/postgres"
       CHOKIDAR_USEPOLLING: "true"
     depends_on:
       - postgres
     networks:
-      - express-auth
+      - qemu
     command: pnpm run dev
 
   postgres:
@@ -30,14 +52,23 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: express
+      POSTGRES_DB: postgres
     volumes:
       - pg_data:/var/lib/postgresql/data
     networks:
-      - express-auth
+      - qemu
+
+  cloudflared:
+    image: cloudflare/cloudflared  # https://qemu-api.billal.space/
+    command: tunnel --no-autoupdate run --url http://server:3000 --token eyJhIjoiNjY0OWViMzI3NGE3NjAyMTJmNTgwMjViMTYxMjUzZWQiLCJ0IjoiZTk5NDMzOWQtZGE2OC00M2Y5LTg5N2QtZjUzMjYxNmUwYWFjIiwicyI6Ik5qbGpNV1ZtTnpNdFpqa3pNQzAwTlRjd0xUZ3pNemt0TVRjM01XUTBPREZrWVRjeiJ9
+    networks:
+      - qemu
+    volumes:
+      - ./cloudflared:/etc/cloudflared
+    restart: unless-stopped
 
 volumes:
   pg_data:
 
 networks:
-  express-auth:
+  qemu:

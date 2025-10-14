@@ -11,7 +11,6 @@ model Account {
   id         String  @id @default(uuid())
   userId     String  @unique
   email      String  @unique
-  phone      String
   password   String
   isVerified Boolean @default(false)
 
@@ -52,6 +51,59 @@ model AggrementInfo {
 
   @@unique([type, role])
 }
+
+model Airlines {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  submissions Submission[]
+}
+
+model Assessment {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  submissions Submission[]
+}
+
+model Submission {
+  id           String               @id @default(cuid())
+  deviceId     String
+  date         DateTime             @default(now())
+  selectedYear DateTime?
+  status       AssessmentStatus
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+
+  airlineId    String
+  airline      Airlines             @relation(fields: [airlineId], references: [id], onDelete: Cascade)
+
+  assessments  Assessment[]
+}
+
+model Payment {
+  id             String       @id @default(cuid())
+  transactionId  String       @unique
+  accountNumber  String
+  package        PackageType
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+enum PackageType {
+  YEARLY
+  MONTHLY
+}
+
+enum AssessmentStatus {
+  PASS
+  FAIL
+}
+
 
 
 enum AggrementInfoType {

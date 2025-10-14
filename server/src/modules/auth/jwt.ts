@@ -14,6 +14,7 @@ export class CookieOptions {
     httpOnly: true,
     secure: false,
     sameSite: "lax",
+    path: "/",
     expires: new Date(Date.now() + 1000 * 60 * 15),
   };
   static refreshCookie: CookieOptions = {
