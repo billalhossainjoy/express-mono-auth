@@ -3,13 +3,20 @@ import { ResponseApi } from "../../lib/ResponseApi";
 import { SubmissionService } from "./submission.service";
 import {
   CreateSubmissionSchema,
+  SubmissionQuerySchema,
   UpdateSubmissionSchema,
 } from "./submission.schema";
 
 export class SubmissionController {
   getAll = asyncHandler(async (req, res) => {
-    const submissions = await SubmissionService.getAllSubmissions();
-    return ResponseApi(res, 200, "All Submissions", submissions);
+    const { _start, _end } = SubmissionQuerySchema.parse(req.query);
+
+    const { submissions, total } = await SubmissionService.getAllSubmissions(
+      _start,
+      _end,
+    );
+
+    return ResponseApi(res, 200, "All Submissions", submissions, { total });
   });
 
   getById = asyncHandler(async (req, res) => {

@@ -25,24 +25,19 @@ export class SubmissionService {
     });
   }
 
-  static async getAllSubmissions(page = 1, limit = 10) {
-    const skip = (page - 1) * limit;
-
+  static async getAllSubmissions(start: number, end: number) {
     const [submissions, total] = await Promise.all([
       prisma.submission.findMany({
         include: { assessments: true, airline: true },
         orderBy: { createdAt: "desc" },
-        skip,
-        take: limit,
+        skip: start,
+        take: end,
       }),
       prisma.submission.count(),
     ]);
 
     return {
       total,
-      page,
-      limit,
-      totalPages: Math.ceil(total / limit),
       submissions,
     };
   }

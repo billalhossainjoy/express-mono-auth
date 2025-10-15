@@ -12,6 +12,7 @@ import { AirlinesRouter } from "./modules/airlines";
 import { AssessmentsRouter } from "./modules/assessments";
 import { SubmissionRouter } from "./modules/submissions/submission.route";
 import { StatisticsRouter } from "./modules/statistics";
+import { PaymentRouter } from "./modules/payment";
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use("/airlines", AirlinesRouter);
 app.use("/assessments", AssessmentsRouter);
 app.use("/submissions", SubmissionRouter);
 app.use("/statistics", StatisticsRouter);
+app.use("/payment", PaymentRouter);
 
 app.use(NotFoundHandler); // Handle doesn't exist routes
 app.use(DefaultErrorHandler); // Default error handler

@@ -35,7 +35,7 @@ export class UserService {
         id,
       },
       data: {
-        avatar: uploadedAvatar.public_id,
+        avatar: uploadedAvatar.secure_url,
       },
     });
 

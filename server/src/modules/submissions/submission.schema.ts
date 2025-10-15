@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+export const SubmissionQuerySchema = z.object({
+  _start: z.string().transform((value) => Number(value)),
+  _end: z.string().transform((value) => Number(value)),
+});
+
 export const SubmissionSchema = z.object({
   id: z.string().optional(),
   deviceId: z.string().min(1, "Device ID is required"),

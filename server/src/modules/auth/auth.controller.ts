@@ -123,6 +123,8 @@ export class AuthController {
   });
 
   getSession = asyncHandler(async (req, res) => {
-    return ResponseApi(res, 200, "Session", req.user);
+    return ResponseApi(res, 200, "Session", {
+      account: req.account,
+    });
   });
 }
